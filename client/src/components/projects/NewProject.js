@@ -1,6 +1,11 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
+import projectContext from "../../context/projects/projectContext";
 
 const NewProject = () => {
+  // Get the state of the form
+  const projectsContext = useContext(projectContext);
+  const { form } = projectsContext;
+
   // State for Project
   const [project, setProject] = useState({
     name: "",
@@ -8,7 +13,6 @@ const NewProject = () => {
 
   // Extract project name
   const { name } = project;
-
 
   // Read the contents of the input
   const onChangeProject = (e) => {
@@ -19,15 +23,15 @@ const NewProject = () => {
   };
 
   // When user submits a project
-  const onSubmitProject = e => {
-    e.preventDefault()
+  const onSubmitProject = (e) => {
+    e.preventDefault();
 
     // Validate the project
 
     // Add to state
 
     // Restart the form
-  }
+  };
 
   return (
     <Fragment>
@@ -35,23 +39,24 @@ const NewProject = () => {
         New Project
       </button>
 
-      <form className="form-new-project"
-      onSubmit={onSubmitProject}>
-        <input
-          type="text"
-          className="input-text"
-          placeholder="Project Name"
-          name="name"
-          value={name}
-          onChange={onChangeProject}
-        />
+      {form ? (
+        <form className="form-new-project" onSubmit={onSubmitProject}>
+          <input
+            type="text"
+            className="input-text"
+            placeholder="Project Name"
+            name="name"
+            value={name}
+            onChange={onChangeProject}
+          />
 
-        <input
-          type="submit"
-          className="btn btn-primary btn-block"
-          value="Add new project"
-        />
-      </form>
+          <input
+            type="submit"
+            className="btn btn-primary btn-block"
+            value="Add new project"
+          />
+        </form>
+      ) : null}
     </Fragment>
   );
 };
