@@ -39,7 +39,6 @@ const NewAccount = () => {
 
         <form onSubmit={onSubmit}>
           <div className="field-form">
-            <label htmlFor="name">User Name</label>
             <input
               type="text"
               id="name"
@@ -51,7 +50,6 @@ const NewAccount = () => {
           </div>
 
           <div className="field-form">
-            <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
@@ -63,7 +61,6 @@ const NewAccount = () => {
           </div>
 
           <div className="field-form">
-            <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"
@@ -75,7 +72,6 @@ const NewAccount = () => {
           </div>
 
           <div className="field-form">
-            <label htmlFor="confirm">Confirm Password</label>
             <input
               type="password"
               id="confirm"

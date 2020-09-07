@@ -28,12 +28,21 @@ const Login = () => {
 
   return (
     <div className="form-user">
+      <div>
+        <h1 className="title">
+          MERN<span>Task</span>
+        </h1>
+        <h2 className="copy">
+          MERNTask is a free web application allowing you to organise your
+          tasks in a fast & simple way
+        </h2>
+      </div>
+
       <div className="container-form shadow-dark">
         <h1>Login</h1>
 
         <form onSubmit={onSubmit}>
           <div className="field-form">
-            <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
@@ -44,7 +53,6 @@ const Login = () => {
             />
           </div>
           <div className="field-form">
-            <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"

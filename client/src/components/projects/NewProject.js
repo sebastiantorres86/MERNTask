@@ -4,7 +4,7 @@ import projectContext from "../../context/projects/projectContext";
 const NewProject = () => {
   // Get the state of the form
   const projectsContext = useContext(projectContext);
-  const { form } = projectsContext;
+  const { form, showForm } = projectsContext;
 
   // State for Project
   const [project, setProject] = useState({
@@ -33,9 +33,18 @@ const NewProject = () => {
     // Restart the form
   };
 
+  // Show the form
+  const onClickForm = () => {
+    showForm();
+  };
+
   return (
     <Fragment>
-      <button type="button" className="btn btn-block btn-primary">
+      <button
+        type="button"
+        className="btn btn-block btn-primary"
+        onClick={onClickForm}
+      >
         New Project
       </button>
 

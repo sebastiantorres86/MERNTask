@@ -52,6 +52,19 @@ a {
   color: var(--pale-blue);
 }
 
+.title {
+  color: var(--white);
+  font-size: 5rem;
+  text-align: center;
+}
+
+.copy {
+  color: var(--white);
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.4;
+}
+
 /** BUTTONS **/
 .btn {
   margin-top: 2rem;
@@ -92,21 +105,6 @@ a {
 
 .btn-delete {
   background-color: var(--white);
-}
-
-@media (min-width: 768px) {
-  .container-app {
-    display: flex;
-    min-height: 100vh;
-  }
-
-  aside {
-    background-color: var(--white);
-    flex: 0 0 300px;
-  }
-  .section-main {
-    flex: 1;
-  }
 }
 
 /* LATERAL BAR */
@@ -288,16 +286,17 @@ aside {
 .form-user {
   background-color: var(--pale-blue);
   height: 100vh;
-  min-height: 800px;
+  padding: 2rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .container-form {
   padding: 5rem 3rem;
-  max-width: 500px;
-  width: 95%;
+  max-width: 400px;
+  width: 100%;
   background-color: var(--white);
   border-radius: 1rem;
 }
@@ -341,6 +340,7 @@ aside {
   text-align: center;
   width: 100%;
 }
+
 @media (min-width: 768px) {
   .alert {
     width: auto;
@@ -357,4 +357,30 @@ aside {
 .alert-error {
   background-color: rgb(230, 78, 78);
   color: var(--white);
+}
+
+@media (min-width: 768px) {
+  .container-app {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .form-user {
+    height: 100vh;
+    flex-direction: row;
+    padding: 14rem;
+  }
+
+  .title, .copy {
+    text-align: left;
+    padding-right: 15rem;
+  }
+
+  aside {
+    background-color: var(--white);
+    flex: 0 0 300px;
+  }
+  .section-main {
+    flex: 1;
+  }
 }
