@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import projectContext from "../../context/projects/projectContext";
 
 const TaskForm = () => {
+  // Extract if a project is active
+  const projectsContext = useContext(projectContext);
+  const { project } = projectsContext;
+
+  // If there is no project selected
+  if (!project) return null;
+
+  // Array destructuring to get the current state
+  const [actualProject] = project;
+
   return (
     <div className="form">
       <form>

@@ -1,7 +1,18 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import Task from "./Task";
+import projectContext from "../../context/projects/projectContext";
 
 const TaskList = () => {
+  // Extract projects from initial state
+  const projectsContext = useContext(projectContext);
+  const { project, deleteProject } = projectsContext;
+
+  // If there is no project selected
+  if (!project) return <h2>Select a project</h2>
+
+  // Array destructuring to get the current state
+  const [actualProject] = project
+
   const ProjectTasks = [
     { name: "Choose Platform", state: true },
     { name: "Choose Colors", state: false },
@@ -9,9 +20,13 @@ const TaskList = () => {
     { name: "Choose Hosting", state: true },
   ];
 
+  // Delete a project
+  const onClickDelete = () => {
+    deleteProject(actualProject.id)
+  }
   return (
     <Fragment>
-      <h2>Project: Virtual Store</h2>
+      <h2>Project: {actualProject.name}</h2>
 
       <ul className="task-list">
         {ProjectTasks.length === 0 ? (
@@ -23,7 +38,7 @@ const TaskList = () => {
         )}
       </ul>
 
-      <button type="button" className="btn btn-delete">
+      <button type="button" className="btn btn-delete" onClick={onClickDelete}>
         Delete Project &times;
       </button>
     </Fragment>
