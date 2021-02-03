@@ -1,40 +1,46 @@
 import React, { Fragment, useContext } from "react";
 import Task from "./Task";
 import projectContext from "../../context/projects/projectContext";
+import taskContext from "../../context/tasks/taskContext";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const TaskList = () => {
   // Extract projects from initial state
   const projectsContext = useContext(projectContext);
   const { project, deleteProject } = projectsContext;
 
+  // Get project tasks
+  const tasksContext = useContext(taskContext);
+  const { tasksProject } = tasksContext;
+
   // If there is no project selected
-  if (!project) return <h2>Select a project</h2>
+  if (!project) return <h2>Select a project</h2>;
 
   // Array destructuring to get the current state
-  const [actualProject] = project
-
-  const ProjectTasks = [
-    { name: "Choose Platform", state: true },
-    { name: "Choose Colors", state: false },
-    { name: "Choose Pay Platform", state: false },
-    { name: "Choose Hosting", state: true },
-  ];
+  const [actualProject] = project;
 
   // Delete a project
   const onClickDelete = () => {
-    deleteProject(actualProject.id)
-  }
+    deleteProject(actualProject.id);
+  };
   return (
     <Fragment>
       <h2>Project: {actualProject.name}</h2>
 
       <ul className="task-list">
-        {ProjectTasks.length === 0 ? (
+        {tasksProject.length === 0 ? (
           <li className="task">
             <p>No pending tasks</p>
           </li>
         ) : (
-          ProjectTasks.map((task) => <Task task={task} />)
+          <TransitionGroup>
+            {tasksProject.map((task) => (
+              <CSSTransition key={task.id} timeout={200}
+              classNames="task">
+                <Task task={task} />
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
         )}
       </ul>
 
